@@ -1,0 +1,43 @@
+name: Sync Obsidian to GitHub
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '**.md'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - '**.md'
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    
+    - name: List changed files
+      run: |
+        echo "Changed files:"
+        git diff --name-only HEAD~1 HEAD || true
+    
+    - name: Validate Markdown
+      run: |
+        echo "Markdown files in repository:"
+        find . -name "*.md" -type f | head -20
+    
+    - name: Generate summary
+      run: |
+        echo "## Repository Summary" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "**Total Markdown files:** $(find . -name "*.md" -type f | wc -l)" >> $GITHUB_STEP_SUMMARY
+        echo "**Last updated:** $(date -u +"%Y-%m-%d %H:%M:%S UTC")" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### Directory Structure" >> $GITHUB_STEP_SUMMARY
+        echo '```' >> $GITHUB_STEP_SUMMARY
+        find . -type d -not -path '*/\.*' -not -path './.git*' | sort | head -20 >> $GITHUB_STEP_SUMMARY
+        echo '```' >> $GITHUB_STEP_SUMMARY

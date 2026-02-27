@@ -1,0 +1,14 @@
+# Obsidian
+.obsidian/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Logs
+*.log
+
+# Backup files
+*.bak
+*~
