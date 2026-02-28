@@ -70,12 +70,13 @@
 **项目链接**：https://github.com/qudi17/markitdown  
 **研究文档**：[GitHub/markitdown/](./markitdown/)  
 **代码规模**：55 个文件，~4,600 行  
-**研究深度**：⭐⭐⭐⭐（完整）
+**研究深度**：⭐⭐⭐⭐⭐（完整）
 
 | 文档 | 大小 | 说明 |
 |------|------|------|
 | [01-markitdown-overview.md](./markitdown/01-markitdown-overview.md) | 15KB | 项目概览 |
 | [02-converters-detail.md](./markitdown/02-converters-detail.md) | 12KB | 转换器详解 |
+| [03-pdf-structure-extraction.md](./markitdown/03-pdf-structure-extraction.md) | 14KB | 📄 PDF 结构识别 |
 | [research-summary.md](./markitdown/research-summary.md) | 17KB | 📝 研究总结 |
 
 **核心发现**：
@@ -169,6 +170,7 @@
 | 2026-02-28 | 添加 nanobot 完整研究 | 11 篇 |
 | 2026-02-28 | 添加 MarkItDown 研究 | 3 篇 |
 | 2026-02-28 | 添加对比研究 | 1 篇 |
+| 2026-02-28 | 添加 MarkItDown PDF 研究 | 1 篇 |
 
 ---
 
