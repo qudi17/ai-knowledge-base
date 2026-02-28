@@ -1,0 +1,25 @@
+{
+  "original_file": "/Users/eddy/.openclaw/workspace/ai-knowledge-base/GitHub/nanobot/04-tool-system.md",
+  "marked_file": "/Users/eddy/.openclaw/workspace/ai-knowledge-base/GitHub/nanobot/tool-system.pending_delete.md",
+  "marked_at": "2026-03-01T00:00:06.357998",
+  "renamed_at": "2026-03-01T00:21:00",
+  "renamed_reason": "移除文件名中的序号前缀（无意义）",
+  "reason": "重复文档",
+  "duplicate_group": "nanobot 工具系统详解",
+  "keep_file": "nanobot-research/03-工具系统.md (内容已在该文件中)",
+  "note": "这些是旧的重复文档，内容已迁移到 nanobot-research/ 目录",
+  "pending_user_confirm": true,
+  "action_required": "Review 后使用 cleanup-pending-delete.sh 确认删除或恢复",
+  "auto_workflow": {
+    "enabled": true,
+    "schedule": "每天凌晨 3:00",
+    "steps": [
+      "1. 检测重复文档",
+      "2. 标记待删除（重命名）",
+      "3. Git 提交并推送",
+      "4. 同步到 Obsidian",
+      "5. 发送通知提醒用户 Review"
+    ],
+    "user_action_required": "Review 待删除文件，确认后使用 cleanup-pending-delete.sh 物理删除"
+  }
+}

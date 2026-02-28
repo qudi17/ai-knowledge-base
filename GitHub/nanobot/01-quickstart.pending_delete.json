@@ -1,0 +1,10 @@
+{
+  "original_file": "/Users/eddy/.openclaw/workspace/ai-knowledge-base/GitHub/nanobot/01-quickstart.md",
+  "marked_file": "/Users/eddy/.openclaw/workspace/ai-knowledge-base/GitHub/nanobot/quickstart.pending_delete.md",
+  "marked_at": "2026-03-01T00:38:09.030145",
+  "reason": "重复文档",
+  "duplicate_group": "快速开始 - 5分钟上手 nanobot",
+  "keep_file": "GitHub/nanobot/00-快速开始.md",
+  "pending_user_confirm": true,
+  "action_required": "Review 后使用 cleanup-pending-delete.sh 确认删除或恢复"
+}
