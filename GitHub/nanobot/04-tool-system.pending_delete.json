@@ -1,0 +1,10 @@
+{
+  "original_file": "/Users/eddy/.openclaw/workspace/ai-knowledge-base/GitHub/nanobot/04-tool-system.md",
+  "marked_file": "/Users/eddy/.openclaw/workspace/ai-knowledge-base/GitHub/nanobot/04-tool-system.pending_delete.md",
+  "marked_at": "2026-03-01T00:00:06.356264",
+  "reason": "重复文档",
+  "duplicate_group": "nanobot 工具系统详解",
+  "keep_file": "GitHub/nanobot/03-工具系统.md",
+  "pending_user_confirm": true,
+  "action_required": "Review 后使用 cleanup-pending-delete.sh 确认删除或恢复"
+}
