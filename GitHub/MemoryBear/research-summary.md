@@ -2,7 +2,7 @@
 
 **研究完成日期**：2026-02-28  
 **研究方法**：毛线团研究法（Yarn Ball Method）  
-**研究文档**：7 篇，总计 138KB  
+**研究文档**：9 篇，总计~170KB  
 **代码分析**：650 个 Python 文件，~65,000 行代码
 
 ---
@@ -11,15 +11,16 @@
 
 | # | 文档 | 大小 | 行数 | 说明 | GitHub 链接 |
 |---|------|------|------|------|------------|
-| 1 | [analysis-report.md](./MemoryBear/analysis-report.md) | 15KB | - | 基础分析报告 | [查看](https://github.com/qudi17/ai-knowledge-base/blob/main/GitHub/MemoryBear/analysis-report.md) |
-| 2 | [api-call-chain-analysis.md](./MemoryBear/api-call-chain-analysis.md) | 18KB | - | API 调用链分析 | [查看](https://github.com/qudi17/ai-knowledge-base/blob/main/GitHub/MemoryBear/api-call-chain-analysis.md) |
-| 3 | [complete-research-report.md](./MemoryBear/complete-research-report.md) | 23KB | 730 | 完整研究报告 | [查看](https://github.com/qudi17/ai-knowledge-base/blob/main/GitHub/MemoryBear/complete-research-report.md) |
-| 4 | [prompts-collection.md](./MemoryBear/prompts-collection.md) | 18KB | 585 | 56 个 Prompt 提取 | [查看](https://github.com/qudi17/ai-knowledge-base/blob/main/GitHub/MemoryBear/prompts-collection.md) |
-| 5 | [prompt-usage-mapping.md](./MemoryBear/prompt-usage-mapping.md) | 20KB | 747 | Prompt 使用映射 | [查看](https://github.com/qudi17/ai-knowledge-base/blob/main/GitHub/MemoryBear/prompt-usage-mapping.md) |
-| 6 | [rag-retrieval-flow.md](./MemoryBear/rag-retrieval-flow.md) | 11KB | 525 | RAG 检索流程 | [查看](https://github.com/qudi17/ai-knowledge-base/blob/main/GitHub/MemoryBear/rag-retrieval-flow.md) |
-| 7 | [neo4j-queries-forgetting-curve.md](./MemoryBear/neo4j-queries-forgetting-curve.md) | 21KB | 906 | Neo4j+ 遗忘曲线 | [查看](https://github.com/qudi17/ai-knowledge-base/blob/main/GitHub/MemoryBear/neo4j-queries-forgetting-curve.md) |
-| 8 | [reflection-forgetting-engines.md](./MemoryBear/reflection-forgetting-engines.md) | 25KB | 1045 | 反思 + 遗忘调度器 | [查看](https://github.com/qudi17/ai-knowledge-base/blob/main/GitHub/MemoryBear/reflection-forgetting-engines.md) |
-| **总计** | **8 篇** | **151KB** | **4,538** | **完整研究** | - |
+| 1 | [analysis-report.md](./analysis-report.md) | 15KB | - | 基础分析报告 | [查看](https://github.com/qudi17/ai-knowledge-base/blob/main/GitHub/MemoryBear/analysis-report.md) |
+| 2 | [api-call-chain-analysis.md](./api-call-chain-analysis.md) | 18KB | - | API 调用链分析 | [查看](https://github.com/qudi17/ai-knowledge-base/blob/main/GitHub/MemoryBear/api-call-chain-analysis.md) |
+| 3 | [complete-research-report.md](./complete-research-report.md) | 23KB | 730 | 完整研究报告 | [查看](https://github.com/qudi17/ai-knowledge-base/blob/main/GitHub/MemoryBear/complete-research-report.md) |
+| 4 | [prompts-collection.md](./prompts-collection.md) | 18KB | 585 | 56 个 Prompt 提取 | [查看](https://github.com/qudi17/ai-knowledge-base/blob/main/GitHub/MemoryBear/prompts-collection.md) |
+| 5 | [prompt-usage-mapping.md](./prompt-usage-mapping.md) | 20KB | 747 | Prompt 使用映射 | [查看](https://github.com/qudi17/ai-knowledge-base/blob/main/GitHub/MemoryBear/prompt-usage-mapping.md) |
+| 6 | [rag-retrieval-flow.md](./rag-retrieval-flow.md) | 11KB | 525 | RAG 检索流程 | [查看](https://github.com/qudi17/ai-knowledge-base/blob/main/GitHub/MemoryBear/rag-retrieval-flow.md) |
+| 7 | [neo4j-queries-forgetting-curve.md](./neo4j-queries-forgetting-curve.md) | 21KB | 906 | Neo4j+ 遗忘曲线 | [查看](https://github.com/qudi17/ai-knowledge-base/blob/main/GitHub/MemoryBear/neo4j-queries-forgetting-curve.md) |
+| 8 | [reflection-forgetting-engines.md](./reflection-forgetting-engines.md) | 25KB | 1045 | 反思 + 遗忘调度器 | [查看](https://github.com/qudi17/ai-knowledge-base/blob/main/GitHub/MemoryBear/reflection-forgetting-engines.md) |
+| 9 | [09-file-upload-to-knowledge-base.md](./09-file-upload-to-knowledge-base.md) | 18KB | 840 | 📄 文件上传到知识库流程 | [查看](https://github.com/qudi17/ai-knowledge-base/blob/main/GitHub/MemoryBear/09-file-upload-to-knowledge-base.md) |
+| **总计** | **9 篇** | **~170KB** | **~5,400** | **完整研究** | - |
 
 ---
 
@@ -64,7 +65,7 @@
 | **遗忘引擎** | 10 | ~8,000 | ✅ 完成 | ✅ 反思 + 遗忘调度器 |
 | **反思引擎** | 5 | ~3,000 | ✅ 完成 | ✅ 反思 + 遗忘调度器 |
 | **Prompts** | 56 | ~2,024 | ✅ 完成 | ✅ Prompt 集合 + 映射 |
-| **总计** | **229** | **~37,534** | **✅ 100%** | **✅ 8 篇文档** |
+| **总计** | **229** | **~37,534** | **✅ 100%** | **✅ 9 篇文档** |
 
 ---
 
