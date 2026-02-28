@@ -436,27 +436,27 @@ RESULT_BACKEND=redis://127.0.0.1:6379/0
 
 ---
 
-## 🔗 重要源码索引
+## 🔗 Important Source Index
 
-### 记忆核心
+### Memory Core
 
-- [`app/core/memory/`](https://github.com/qudi17/MemoryBear/tree/main/api/app/core/memory) - 记忆系统总览
-- [`app/core/memory/llm_tools/`](https://github.com/qudi17/MemoryBear/tree/main/api/app/core/memory/llm_tools) - LLM 工具集
+- [`app/core/memory/`](https://github.com/qudi17/MemoryBear/tree/main/api/app/core/memory) - Memory System Overview
+- [`app/core/memory/llm_tools/`](https://github.com/qudi17/MemoryBear/tree/main/api/app/core/memory/llm_tools) - LLM Tools
 
-### RAG 工具
+### RAG Tools
 
-- [`app/core/rag_utils/chunk_insight.py`](https://github.com/qudi17/MemoryBear/blob/main/api/app/core/rag_utils/chunk_insight.py) - 块洞察
-- [`app/core/rag_utils/chunk_summary.py`](https://github.com/qudi17/MemoryBear/blob/main/api/app/core/rag_utils/chunk_summary.py) - 摘要生成
+- [`app/core/rag_utils/chunk_insight.py`](https://github.com/qudi17/MemoryBear/blob/main/api/app/core/rag_utils/chunk_insight.py) - Chunk Insight
+- [`app/core/rag_utils/chunk_summary.py`](https://github.com/qudi17/MemoryBear/blob/main/api/app/core/rag_utils/chunk_summary.py) - Summary Generation
 
-### 工具系统
+### Tool System
 
-- [`app/core/tools/base.py`](https://github.com/qudi17/MemoryBear/blob/main/api/app/core/tools/base.py) - 工具基类
-- [`app/core/tools/mcp/client.py`](https://github.com/qudi17/MemoryBear/blob/main/api/app/core/tools/mcp/client.py) - MCP 客户端
+- [`app/core/tools/base.py`](https://github.com/qudi17/MemoryBear/blob/main/api/app/core/tools/base.py) - Tool Base Class
+- [`app/core/tools/mcp/client.py`](https://github.com/qudi17/MemoryBear/blob/main/api/app/core/tools/mcp/client.py) - MCP Client
 
-### 数据库
+### Database
 
-- [`app/db.py`](https://github.com/qudi17/MemoryBear/blob/main/api/app/db.py) - 数据库连接
-- [`api/migrations/`](https://github.com/qudi17/MemoryBear/tree/main/api/migrations) - Alembic 迁移
+- [`app/db.py`](https://github.com/qudi17/MemoryBear/blob/main/api/app/db.py) - Database Connection
+- [`api/migrations/`](https://github.com/qudi17/MemoryBear/tree/main/api/migrations) - Alembic Migrations
 
 ---
 

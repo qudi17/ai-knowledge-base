@@ -9,19 +9,20 @@
 
 ## 📊 对比报告清单
 
-### 已完成
+### Completed
 
-| 对比项目 | 报告链接 | 创建日期 | 核心发现 |
+| Comparison | Report Link | Date | Key Findings |
 |---------|---------|---------|---------|
-| **nanobot vs MemoryBear** | [Agent 运行步骤对比](./nanobot%20vs%20MemoryBear/Agent 运行步骤对比.md) | 2026-02-28 | MemoryBear 延迟 2.1x，但准确性 +7% |
+| **nanobot vs MemoryBear** | [Agent Runtime](./nanobot%20vs%20MemoryBear/agent-runtime-comparison.md) | 2026-02-28 | MemoryBear 2.1x latency, +7% accuracy |
+| | [Core Mechanisms](./nanobot%20vs%20MemoryBear/agent-core-mechanisms-comparison.md) | 2026-02-28 | System Prompt, Memory, Tools |
 
-### 计划中
+### Planned
 
-| 对比项目 | 预计完成 | 对比维度 |
+| Comparison | ETA | Dimensions |
 |---------|---------|---------|
 | langchain vs llama_index | 2026-03-06 | RAG Pipeline |
-| dify vs flowise | 2026-03-08 | Workflow 编排 |
-| auto-gen vs crewAI | 2026-03-10 | 多 Agent 协作 |
+| dify vs flowise | 2026-03-08 | Workflow Orchestration |
+| auto-gen vs crewAI | 2026-03-10 | Multi-Agent Collaboration |
 
 ---
 
@@ -165,20 +166,20 @@ def method_b():
 
 ---
 
-## 🔗 相关文档
+## 🔗 Related Documents
 
-- [项目分析模板](../项目分析模板.md)
-- [研究计划](../研究计划.md)
-- [通用架构设计](../通用架构设计.md)
+- [Project Analysis Template](../project-analysis-template.md)
+- [Research Plan](../research-plan.md)
+- [Universal Architecture](../universal-architecture.md)
 
 ---
 
-## 📝 更新日志
+## 📝 Changelog
 
-| 日期 | 更新内容 | 更新人 |
+| Date | Update | Author |
 |------|---------|-------|
-| 2026-02-28 | 创建对比报告索引和规范 | Jarvis |
-| 2026-02-28 | 添加 nanobot vs MemoryBear 对比 | Jarvis |
+| 2026-02-28 | Created comparison index and guidelines | Jarvis |
+| 2026-02-28 | Added nanobot vs MemoryBear comparison | Jarvis |
 
 ---
 

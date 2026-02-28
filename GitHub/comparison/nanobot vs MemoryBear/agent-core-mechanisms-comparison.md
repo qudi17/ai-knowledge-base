@@ -1,22 +1,22 @@
-# nanobot vs MemoryBear - Agent 核心机制深度对比
+# nanobot vs MemoryBear - Agent Core Mechanisms Deep Comparison
 
-**对比日期**：2026-02-28  
-**项目 A**：[nanobot](https://github.com/HKUDS/nanobot) - 轻量级 Agent 框架  
-**项目 B**：[MemoryBear](https://github.com/qudi17/MemoryBear) - 平台级记忆管理系统  
-**对比维度**：System Prompt 组织、记忆管理、工具管理
+**Date**: 2026-02-28  
+**Project A**: [nanobot](https://github.com/HKUDS/nanobot) - Lightweight Agent Framework  
+**Project B**: [MemoryBear](https://github.com/qudi17/MemoryBear) - Platform-level Memory Management System  
+**Dimensions**: System Prompt Organization, Memory Management, Tool Management
 
 ---
 
-## 📊 核心差异概览
+## 📊 Core Differences Overview
 
-| 维度 | nanobot | MemoryBear | 差异倍数 |
+| Dimension | nanobot | MemoryBear | Difference |
 |------|---------|------------|---------|
-| **System Prompt** | 分层静态组装 | LangChain 标准注入 | - |
-| **记忆类型** | 双层（Session+MEMORY.md） | 三层（短期 + 长期+RAG） | - |
-| **记忆注入** | 上下文构建时加载 | 对话后异步写入 | - |
-| **工具管理** | 注册器模式（同进程） | LangChain 工具 + MCP | - |
-| **工具安全** | Workspace 限制 + 黑名单 | 连续调用限制 + 认证 | - |
-| **代码量** | ~500 行（agent/） | ~700 行（langchain_agent.py） | 1.4x |
+| **System Prompt** | Layered static assembly | LangChain standard injection | - |
+| **Memory Type** | 2-layer (Session+MEMORY.md) | 3-layer (Short+Long+RAG) | - |
+| **Memory Injection** | Load at context build | Async write after conversation | - |
+| **Tool Management** | Registry pattern (same process) | LangChain Tools + MCP | - |
+| **Tool Safety** | Workspace limit + blacklist | Consecutive call limit + auth | - |
+| **Code Size** | ~500 lines (agent/) | ~700 lines (langchain_agent.py) | 1.4x |
 
 ---
 
@@ -639,11 +639,11 @@ config={"recursion_limit": self.max_iterations}  # 防止死循环
 
 ---
 
-## 🔗 相关文档
+## 🔗 Related Documents
 
-- [nanobot 分析报告](../nanobot/分析报告.md)
-- [MemoryBear 分析报告](../MemoryBear/分析报告.md)
-- [Agent 运行步骤对比](./Agent 运行步骤对比.md)
+- [nanobot Analysis](../nanobot/analysis-report.md)
+- [MemoryBear Analysis](../MemoryBear/analysis-report.md)
+- [Agent Runtime Comparison](./agent-runtime-comparison.md)
 
 ---
 

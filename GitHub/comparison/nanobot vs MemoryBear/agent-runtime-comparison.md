@@ -437,11 +437,11 @@ MemoryBear 平台
 
 ---
 
-## 🔗 相关文档
+## 🔗 Related Documents
 
-- [nanobot 分析报告](../nanobot/分析报告.md)
-- [MemoryBear 分析报告](../MemoryBear/分析报告.md)
-- [通用架构设计](../通用架构设计.md)
+- [nanobot Analysis](../nanobot/analysis-report.md)
+- [MemoryBear Analysis](../MemoryBear/analysis-report.md)
+- [Universal Architecture](../universal-architecture.md)
 
 ---
 
