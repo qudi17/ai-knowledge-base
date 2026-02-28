@@ -43,9 +43,10 @@ MarkItDown 是一个轻量级 Python 工具，用于将各种文件格式转换�
 | 1 | [01-markitdown-overview.md](./01-markitdown-overview.md) | 15KB | 项目概览 + 架构分析 |
 | 2 | [02-converters-detail.md](./02-converters-detail.md) | 12KB | 25+ 个转换器详解 |
 | 3 | [03-pdf-structure-extraction.md](./03-pdf-structure-extraction.md) | 14KB | 📄 PDF 结构识别详解 |
-| 4 | [research-summary.md](./research-summary.md) | 17KB | 📝 完整研究总结 |
+| 4 | [04-pdf-chart-handling.md](./04-pdf-chart-handling.md) | 12KB | 📊 PDF 图表处理详解 |
+| 5 | [research-summary.md](./research-summary.md) | 17KB | 📝 完整研究总结 |
 
-**总计**：4 篇，~58KB
+**总计**：5 篇，~70KB
 
 ---
 
