@@ -1,27 +1,28 @@
-# GitHub 项目研究方法论 - 毛线团研究法
+# 毛线团研究法（Yarn Ball Method）
 
 **创建日期**：2026-02-28  
 **提出者**：Eddy  
-**应用场景**：GitHub 项目深度研究
+**应用项目**：MemoryBear, nanobot, MarkItDown  
+**研究文档**：24 篇，~400KB
 
 ---
 
-## 🧶 核心比喻
+## 🧶 核心理念
 
 > 把 GitHub 项目当作一个**毛线团**：
-> - **毛线头** = 入口（API/CLI/Shell 脚本）
+> - **毛线头** = 入口（CLI/API/Shell 脚本）
 > - **毛线** = 调用链
 > - **毛线团** = 完整项目结构
 
 **研究原则**：
-1. 找到线头（入口点）
-2. 顺着线走（调用顺序）
-3. 不跳跃（不随机阅读文件）
-4. 记录路径（绘制流程图）
+1. ✅ 系统性：不随机阅读，按调用顺序
+2. ✅ 可追溯：每个结论都有代码位置
+3. ✅ 可视化：流程图清晰展示
+4. ✅ 无推断：所有结论基于实际代码
 
 ---
 
-## 📋 研究流程
+## 📋 四步流程
 
 ### 阶段 1：找线头（入口点识别）
 
@@ -56,6 +57,20 @@ cat package.json | jq ".main"
 入口：POST /v1/app/chat
 位置：app/controllers/service/app_api_controller.py
 函数：chat()
+```
+
+**nanobot 示例**：
+```
+入口：nanobot agent -m "Hello"
+位置：nanobot/cli/commands.py
+函数：agent()
+```
+
+**MarkItDown 示例**：
+```
+入口：markitdown path-to-file.pdf
+位置：packages/markitdown/src/markitdown/_markitdown.py
+函数：convert()
 ```
 
 ---
@@ -98,7 +113,7 @@ grep -r "logger.info" app/ | grep "chat"
 grep -r "log.*request" app/
 ```
 
-**MemoryBear 示例**：
+**MemoryBear 调用链**：
 ```
 1. API Controller: chat()
    ↓ (grep -r "app_chat_service")
@@ -109,6 +124,32 @@ grep -r "log.*request" app/
 4. LangChain Agent: ainvoke()
    ↓ (grep -r "write_long_term")
 5. Memory Write: write_long_term()
+```
+
+**nanobot 调用链**：
+```
+1. CLI: agent()
+   ↓ (grep -r "publish_message")
+2. Channel: publish_message()
+   ↓ (grep -r "consume_inbound")
+3. MessageBus: consume_inbound()
+   ↓ (grep -r "_process_message")
+4. AgentLoop: _process_message()
+   ↓ (grep -r "_run_agent_loop")
+5. AgentLoop: _run_agent_loop()
+```
+
+**MarkItDown 调用链**：
+```
+1. CLI: convert()
+   ↓ (grep -r "convert_local")
+2. MarkItDown: convert_local()
+   ↓ (grep -r "convert_stream")
+3. MarkItDown: convert_stream()
+   ↓ (grep -r "accepts")
+4. Converter: accepts()
+   ↓ (grep -r "convert")
+5. Converter: convert()
 ```
 
 ---
@@ -170,7 +211,7 @@ sequenceDiagram
    - 缓存使用位置
    - 外部服务调用
 
-**MemoryBear 示例**：
+**MemoryBear 模块结构**：
 ```
 app/
 ├── controllers/        # API 入口（线头）
@@ -188,112 +229,28 @@ app/
 └── repositories/       # 数据访问
 ```
 
----
-
-## 🎯 应用案例
-
-### 案例 1：MemoryBear 记忆写入流程
-
-**线头**：`POST /v1/app/chat`
-
-**顺线追踪**：
+**nanobot 模块结构**：
 ```
-1. app_api_controller.py:chat()
-   - 第 119 行：@router.post("/chat")
-   - 第 158 行：app_chat_service.agnet_chat()
-
-2. app_chat_service.py:agnet_chat()
-   - 第 39 行：函数定义
-   - 第 172 行：LangChainAgent(...)
-   - 第 201 行：agent.chat()
-
-3. langchain_agent.py:chat()
-   - 第 194 行：函数定义
-   - 第 267 行：agent.ainvoke()
-   - 第 280 行：write_long_term()
-
-4. write_graph.py:write_long_term()
-   - 第 68 行：函数定义
-   - 第 73 行：if storage_type == 'rag'
-   - 第 78 行：long_term_storage()
-
-5. write_router.py:long_term_storage()
-   - 第 134 行：window_dialogue()
-   - 第 159 行：memory_long_term_storage()
-   - 第 176 行：aggregate_judgment()
-
-6. write_router.py:aggregate_judgment()
-   - 第 198 行：template_service.render_template()
-   - 第 203 行：write_aggregate_judgment.jinja2
+nanobot/
+├── agent/              # Agent 核心
+│   ├── loop.py        # Agent 循环
+│   ├── context.py     # 上下文构建
+│   └── memory.py      # 记忆系统
+├── channels/           # 多平台集成
+├── bus/                # 消息总线
+└── providers/          # LLM 适配
 ```
 
-**绘制流程图**：
-```mermaid
-graph TB
-    API[POST /v1/app/chat] --> Controller[app_api_controller.py:chat]
-    Controller --> Service[app_chat_service.py:agnet_chat]
-    Service --> Agent[langchain_agent.py:chat]
-    Agent --> LLM[LangChain ainvoke]
-    LLM --> Memory{storage_type?}
-    Memory -->|rag| RAG[write_rag]
-    Memory -->|neo4j| Neo4j[long_term_storage]
-    Neo4j --> Strategy{strategy?}
-    Strategy -->|chunk| Window[window_dialogue]
-    Strategy -->|time| Time[memory_long_term_storage]
-    Strategy -->|aggregate| Aggregate[aggregate_judgment]
-    Aggregate --> Template[write_aggregate_judgment.jinja2]
-    Template --> LLM2[LLM judgment]
-    LLM2 --> Write[Write to Neo4j]
+**MarkItDown 模块结构**：
 ```
-
-**记录 Prompt 使用**：
-- `write_aggregate_judgment.jinja2` - 记忆去重判断
-- `summary_prompt.jinja2` - 记忆检索总结
-
----
-
-### 案例 2：nanobot Agent 循环
-
-**线头**：`MessageBus.inbound`
-
-**顺线追踪**：
-```
-1. agent/loop.py:run()
-   - 第 247 行：while self._running
-   - 第 251 行：await self.bus.consume_inbound()
-   - 第 263 行：asyncio.create_task(self._dispatch())
-
-2. agent/loop.py:_dispatch()
-   - 第 284 行：async with self._processing_lock
-   - 第 287 行：await self._process_message()
-
-3. agent/loop.py:_process_message()
-   - 第 304 行：函数定义
-   - 第 397 行：build_messages()
-   - 第 419 行：_run_agent_loop()
-
-4. agent/loop.py:_run_agent_loop()
-   - 第 191 行：while iteration < max_iterations
-   - 第 196 行：await provider.chat()
-   - 第 204 行：if response.has_tool_calls
-   - 第 226 行：await tools.execute()
-```
-
-**绘制流程图**：
-```mermaid
-graph TB
-    Start[MessageBus.inbound] --> Run[AgentLoop.run]
-    Run --> Dispatch[_dispatch]
-    Dispatch --> Process[_process_message]
-    Process --> Context[ContextBuilder.build_messages]
-    Context --> Loop[_run_agent_loop]
-    Loop --> LLM[provider.chat]
-    LLM --> Check{tool_calls?}
-    Check -->|yes| Tool[tools.execute]
-    Tool --> Loop
-    Check -->|no| Final[final_content]
-    Final --> Save[_save_turn]
-    Save --> Bus[MessageBus.outbound]
+packages/markitdown/src/markitdown/
+├── _markitdown.py      # 核心类
+├── _base_converter.py  # 抽象基类
+├── converters/         # 25+ 个转换器
+│   ├── _pdf_converter.py
+│   ├── _docx_converter.py
+│   └── ...
+└── tests/              # 测试用例
 ```
 
 ---
@@ -428,31 +385,62 @@ project/
 
 ---
 
-## 🎯 未来应用计划
+## 🎯 应用案例
 
-### MemoryBear 后续研究
+### MemoryBear 研究
 
-- [ ] 以 RAG 检索为入口，追踪检索流程
-- [ ] 以工具系统为入口，追踪工具执行
-- [ ] 以工作流引擎为入口，追踪工作流编排
+**入口点**：`POST /v1/app/chat`  
+**调用链**：API → Service → Agent → Memory  
+**核心发现**：
+- 三层记忆架构（Neo4j+RAG+Redis）
+- ACT-R 遗忘曲线实现
+- 自我反思引擎
 
-### 下一个项目：langchain
-
-- [ ] 找到入口：`langchain/chains/`
-- [ ] 追踪调用链：Chain → LLM → Output
-- [ ] 绘制流程图
-- [ ] 记录 Prompt 使用
-
-### 下一个项目：llama_index
-
-- [ ] 找到入口：`llama_index/core/`
-- [ ] 追踪调用链：QueryEngine → Retriever → Response
-- [ ] 绘制流程图
-- [ ] 记录索引策略
+**研究文档**：9 篇，169KB
 
 ---
 
-**创建人**：Jarvis  
-**日期**：2026-02-28  
-**状态**：✅ 已完成  
-**应用项目**：MemoryBear, nanobot
+### nanobot 研究
+
+**入口点**：`nanobot agent -m "Hello"`  
+**调用链**：CLI → Channel → Agent → Provider  
+**核心发现**：
+- 极简 Agent Loop（~700 行）
+- 双层记忆系统（MEMORY.md + HISTORY.md）
+- 11 个 Channels 开箱即用
+
+**研究文档**：11 篇，198KB
+
+---
+
+### MarkItDown 研究
+
+**入口点**：`markitdown path-to-file.pdf`  
+**调用链**：CLI → Core → Converters → Libs  
+**核心发现**：
+- 责任链模式 + 策略模式
+- 25+ 个转换器
+- 流式处理（无临时文件）
+
+**研究文档**：3 篇，44KB
+
+---
+
+## 📝 更新日志
+
+| 日期 | 更新内容 |
+|------|---------|
+| 2026-02-28 | 创建毛线团研究法文档 |
+| 2026-02-28 | 应用于 MemoryBear 研究 |
+| 2026-02-28 | 应用于 nanobot 研究 |
+| 2026-02-28 | 应用于 MarkItDown 研究 |
+
+---
+
+**研究方法**：✅ **已验证**  
+**应用项目**：3 个（MemoryBear, nanobot, MarkItDown）  
+**研究文档**：24 篇，~400KB
+
+**提出者**：Eddy  
+**实施者**：Jarvis  
+**日期**：2026-02-28
