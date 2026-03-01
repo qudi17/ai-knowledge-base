@@ -71,6 +71,21 @@ cp templates/research-project/STATE.md .planning/{{项目名称}}/
 
 ---
 
+### 步骤 3.5: 填写 COMPLETENESS_CHECKLIST.md（2 分钟）⭐ **新增**
+
+**重要**: 确保研究全面性，避免遗漏！
+
+**编辑** `.planning/{{项目名称}}/COMPLETENESS_CHECKLIST.md`:
+- 复制模板
+- 逐项检查入口点（API/CLI/Cron/Celery/事件/Webhook/消息队列）
+- 逐项检查架构层次
+- 逐项检查 Agent 系统
+- 逐项检查工具系统
+- 逐项检查记忆/RAG 系统
+- 识别未分析模块，补充到 ROADMAP.md
+
+---
+
 ### 步骤 4: 填写 ROADMAP.md（1 分钟）
 
 **编辑** `.planning/{{项目名称}}/ROADMAP.md`:

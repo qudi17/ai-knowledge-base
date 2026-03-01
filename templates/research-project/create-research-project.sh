@@ -34,12 +34,14 @@ cp "$TEMPLATES_DIR/PROJECT.md" "$PLANNING_DIR/$PROJECT_NAME/"
 cp "$TEMPLATES_DIR/REQUIREMENTS.md" "$PLANNING_DIR/$PROJECT_NAME/"
 cp "$TEMPLATES_DIR/ROADMAP.md" "$PLANNING_DIR/$PROJECT_NAME/"
 cp "$TEMPLATES_DIR/STATE.md" "$PLANNING_DIR/$PROJECT_NAME/"
-# 注意：不复制 research-report-template.md 为 01-overview.md
+cp "$TEMPLATES_DIR/COMPLETENESS_CHECKLIST.md" "$PLANNING_DIR/$PROJECT_NAME/"
+# 注意：不复制 research-report-template.md
 # 避免模板文件残留，实际研究报告由研究者创建
 echo "   ✅ PROJECT.md"
 echo "   ✅ REQUIREMENTS.md"
 echo "   ✅ ROADMAP.md"
 echo "   ✅ STATE.md"
+echo "   ✅ COMPLETENESS_CHECKLIST.md ⭐"
 echo ""
 
 # 替换占位符
