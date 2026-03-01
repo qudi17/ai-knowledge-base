@@ -22,15 +22,19 @@
 
 ## 📝 待研究项目
 
-### RAG 专项项目
+### RAG 框架专项（核心）
 
 | 项目 | Stars | 类型 | GitHub 地址 | 推荐日期 | 优先级 | 状态 |
 |------|-------|------|-----------|---------|-------|------|
-| **PrivateGPT** | 40,000+ | RAG | [GitHub](https://github.com/imartinez/privateGPT) | 2026-03-01 | ⭐⭐⭐ | 📝 |
+| **LlamaIndex** | 35,000+ | RAG 框架 | [GitHub](https://github.com/run-llama/llama_index) | 2026-03-01 | ⭐⭐⭐⭐⭐ | 📝 |
+| **Haystack** | 15,000+ | RAG 框架 | [GitHub](https://github.com/deepset-ai/haystack) | 2026-03-01 | ⭐⭐⭐⭐⭐ | 📝 |
+| **RAGFlow** | 12,000+ | RAG 引擎 | [GitHub](https://github.com/infiniflow/ragflow) | 2026-03-01 | ⭐⭐⭐⭐ | 📝 |
+| **LightRAG** | 8,000+ | 轻量 RAG | [GitHub](https://github.com/HKUDS/LightRAG) | 2026-03-01 | ⭐⭐⭐⭐ | 📝 |
+| **txtai** | 10,000+ | 语义搜索/RAG | [GitHub](https://github.com/neuml/txtai) | 2026-03-01 | ⭐⭐⭐⭐ | 📝 |
+| **PrivateGPT** | 40,000+ | RAG 应用 | [GitHub](https://github.com/imartinez/privateGPT) | 2026-03-01 | ⭐⭐⭐ | 📝 |
 | **Dify** | 50,000+ | RAG 应用平台 | [GitHub](https://github.com/langgenius/dify) | 2026-03-01 | ⭐⭐⭐ | 📝 |
 | **AnythingLLM** | 35,000+ | RAG 桌面应用 | [GitHub](https://github.com/Mintplex-Labs/anything-llm) | 2026-03-01 | ⭐⭐⭐ | 📝 |
 | **ChatDOC** | 15,000+ | 文档 RAG | [GitHub](https://github.com/ChatDOC/ChatDOC) | 2026-03-01 | ⭐⭐ | 📝 |
-| **RAGFlow** | 12,000+ | RAG 引擎 | [GitHub](https://github.com/infiniflow/ragflow) | 2026-03-01 | ⭐⭐⭐ | 📝 |
 
 ### 其他待研究项目
 
@@ -101,7 +105,7 @@
 
 | 指标 | 数值 |
 |------|------|
-| **待研究** | 24 个（含 5 个 RAG 专项） |
+| **待研究** | 28 个（含 9 个 RAG 框架） |
 | **研究中** | 0 个 |
 | **已完成** | 12 个 (4 GitHub 项目 + 8 理论) |
 | **已暂停** | 0 个 |
@@ -142,6 +146,7 @@
 
 | 日期 | 更新内容 | 操作 |
 |------|---------|------|
+| 2026-03-01 | 添加 RAG 框架专项 | 新增 LlamaIndex、Haystack、LightRAG、txtai（用户指定） |
 | 2026-03-01 | 添加 RAG 专项项目 | 新增 PrivateGPT、Dify、AnythingLLM、ChatDOC、RAGFlow |
 | 2026-03-01 | 添加 2 月 28 日推送项目 | 新增 AutoGPT、prompts.chat、LLMs-from-scratch、OpenHands、Flowise |
 | 2026-03-01 | OpenClaw 完整研究完成 | 4 篇报告（概览/会话管理/上下文注入/对比优化） |
