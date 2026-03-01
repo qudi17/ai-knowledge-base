@@ -22,48 +22,48 @@
 
 ## 📝 待研究项目
 
-| 项目 | Stars | 类型 | 推荐日期 | 优先级 | 状态 |
-|------|-------|------|---------|-------|------|
-| **Ollama** | 75,000+ | 本地 LLM | 2026-03-01 | ⭐⭐⭐ | 📝 |
-| **vllm** | 60,000+ | LLM 推理 | 2026-03-01 | ⭐⭐⭐ | 📝 |
-| **superpowers** | 63,466 | Agent 技能框架 | 2026-02-24 | ⭐⭐⭐ | 📝 |
-| **LM Studio** | 50,000+ | 桌面平台 | 2026-03-01 | ⭐⭐ | 📝 |
-| **Text Generation WebUI** | 45,000+ | Web 界面 | 2026-03-01 | ⭐⭐ | 📝 |
-| **PrivateGPT** | 40,000+ | RAG | 2026-03-01 | ⭐⭐⭐ | 📝 |
-| **deer-flow** | 21,180 | Agent | 2026-02-24 | ⭐⭐⭐ | 📝 |
-| **planning-with-files** | 14,326 | Agent/知识管理 | 2026-03-01 | ⭐⭐⭐ | 📝 |
-| **claude-flow** | 15,011 | Agent 编排 | 2026-02-24 | ⭐⭐⭐ | 📝 |
-| **antigravity-awesome-skills** | 14,542 | Agent 技能 | 2026-02-24 | ⭐⭐ | 📝 |
-| **daily_stock_analysis** | 12,672 | 数据分析 | 2026-03-01 | ⭐⭐ | 📝 |
-| **Qwen3-TTS** | 8,388 | TTS/语音 | 2026-03-01 | ⭐⭐ | 📝 |
-| **Scrapling** | - | Web 爬虫 | 2026-02-24 | ⭐⭐ | 📝 |
-| **Agent-Skills-for-Context-Engineering** | - | Agent 技能 | 2026-02-24 | ⭐⭐ | 📝 |
+| 项目 | Stars | 类型 | GitHub 地址 | 推荐日期 | 优先级 | 状态 |
+|------|-------|------|-----------|---------|-------|------|
+| **Ollama** | 75,000+ | 本地 LLM | [GitHub](https://github.com/ollama/ollama) | 2026-03-01 | ⭐⭐⭐ | 📝 |
+| **vllm** | 60,000+ | LLM 推理 | [GitHub](https://github.com/vllm-project/vllm) | 2026-03-01 | ⭐⭐⭐ | 📝 |
+| **superpowers** | 63,466 | Agent 技能框架 | [GitHub](https://github.com/obra/superpowers) | 2026-02-24 | ⭐⭐⭐ | 📝 |
+| **LM Studio** | 50,000+ | 桌面平台 | [GitHub](https://github.com/lmstudio-ai/lm-studio) | 2026-03-01 | ⭐⭐ | 📝 |
+| **Text Generation WebUI** | 45,000+ | Web 界面 | [GitHub](https://github.com/oobabooga/text-generation-webui) | 2026-03-01 | ⭐⭐ | 📝 |
+| **PrivateGPT** | 40,000+ | RAG | [GitHub](https://github.com/imartinez/privateGPT) | 2026-03-01 | ⭐⭐⭐ | 📝 |
+| **deer-flow** | 21,180 | Agent | [GitHub](https://github.com/bytedance/deer-flow) | 2026-02-24 | ⭐⭐⭐ | 📝 |
+| **claude-flow** | 15,011 | Agent 编排 | [GitHub](https://github.com/ruvnet/claude-flow) | 2026-02-24 | ⭐⭐⭐ | 📝 |
+| **planning-with-files** | 14,326 | Agent/知识管理 | [GitHub](https://github.com/OthmanAdi/planning-with-files) | 2026-03-01 | ⭐⭐⭐ | 📝 |
+| **antigravity-awesome-skills** | 14,542 | Agent 技能 | [GitHub](https://github.com/sickn33/antigravity-awesome-skills) | 2026-02-24 | ⭐⭐ | 📝 |
+| **daily_stock_analysis** | 12,672 | 数据分析 | [GitHub](https://github.com/ZhuLinsen/daily_stock_analysis) | 2026-03-01 | ⭐⭐ | 📝 |
+| **Qwen3-TTS** | 8,388 | TTS/语音 | [GitHub](https://github.com/QwenLM/Qwen3-TTS) | 2026-03-01 | ⭐⭐ | 📝 |
+| **Scrapling** | - | Web 爬虫 | [GitHub](https://github.com/D4Vinci/Scrapling) | 2026-02-24 | ⭐⭐ | 📝 |
+| **Agent-Skills-for-Context-Engineering** | - | Agent 技能 | [GitHub](https://github.com/muratcankoylan/Agent-Skills-for-Context-Engineering) | 2026-02-24 | ⭐⭐ | 📝 |
 
 ---
 
 ## 🔄 研究中项目
 
-| 项目 | Stars | 类型 | 开始日期 | 预计完成 | 进度 |
-|------|-------|------|---------|---------|------|
-| - | - | - | - | - | - |
+| 项目 | Stars | 类型 | GitHub 地址 | 开始日期 | 预计完成 | 进度 |
+|------|-------|------|-----------|---------|---------|------|
+| - | - | - | - | - | - | - |
 
 ---
 
 ## ✅ 已完成研究
 
-| 项目 | Stars | 类型 | 完成日期 | 报告位置 |
-|------|-------|------|---------|---------|
-| **MarkItDown** | - | 主动研究 | 2026-02-28 | [GitHub/markitdown/](./GitHub/markitdown/) |
-| **nanobot** | 23,839 | 主动研究 | 2026-03-01 | [GitHub/nanobot/](./GitHub/nanobot/) |
-| **MemoryBear** | - | 主动研究 | 2026-03-01 | [GitHub/MemoryBear/](./GitHub/MemoryBear/) |
+| 项目 | Stars | 类型 | GitHub 地址 | 完成日期 | 报告位置 |
+|------|-------|------|-----------|---------|---------|
+| **MarkItDown** | - | 文档转换 | [GitHub](https://github.com/microsoft/markitdown) | 2026-02-28 | [GitHub/markitdown/](./GitHub/markitdown/) |
+| **nanobot** | 23,839 | Agent 框架 | [GitHub](https://github.com/HKUDS/nanobot) | 2026-03-01 | [GitHub/nanobot/](./GitHub/nanobot/) |
+| **MemoryBear** | - | 记忆平台 | [GitHub](https://github.com/qudi17/MemoryBear) | 2026-03-01 | [GitHub/MemoryBear/](./GitHub/MemoryBear/) |
 
 ---
 
 ## ⏸️ 已暂停项目
 
-| 项目 | Stars | 类型 | 暂停日期 | 原因 |
-|------|-------|------|---------|------|
-| - | - | - | - | - |
+| 项目 | Stars | 类型 | GitHub 地址 | 暂停日期 | 原因 |
+|------|-------|------|-----------|---------|------|
+| - | - | - | - | - | - |
 
 ---
 
@@ -112,6 +112,7 @@
 
 | 日期 | 更新内容 | 操作 |
 |------|---------|------|
+| 2026-03-01 | 添加 GitHub 地址列 | 所有项目添加可点击的 GitHub 链接 |
 | 2026-03-01 | 简化待研究项目表格 | 合并为统一表格，按 Stars 排序 |
 | 2026-03-01 | 添加历史推送项目（去重） | 新增 deer-flow, superpowers, claude-flow 等 6 个项目 |
 | 2026-03-01 | 添加 AI 新闻推送项目 | 新增 planning-with-files, daily_stock_analysis, Qwen3-TTS |
