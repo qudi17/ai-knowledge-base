@@ -30,6 +30,11 @@
 | **LM Studio** | 50,000+ | 桌面平台 | [GitHub](https://github.com/lmstudio-ai/lm-studio) | 2026-03-01 | ⭐⭐ | 📝 |
 | **Text Generation WebUI** | 45,000+ | Web 界面 | [GitHub](https://github.com/oobabooga/text-generation-webui) | 2026-03-01 | ⭐⭐ | 📝 |
 | **PrivateGPT** | 40,000+ | RAG | [GitHub](https://github.com/imartinez/privateGPT) | 2026-03-01 | ⭐⭐⭐ | 📝 |
+| **AutoGPT** | 182,000+ | AI Agent | [GitHub](https://github.com/Significant-Gravitas/AutoGPT) | 2026-02-28 | ⭐⭐⭐ | 📝 |
+| **prompts.chat** | 148,000+ | 提示词平台 | [GitHub](https://github.com/f/prompts.chat) | 2026-02-28 | ⭐⭐ | 📝 |
+| **LLMs-from-scratch** | 86,000+ | LLM 教学 | [GitHub](https://github.com/rasbt/LLMs-from-scratch) | 2026-02-28 | ⭐⭐⭐ | 📝 |
+| **OpenHands** | 68,000+ | AI 编程 | [GitHub](https://github.com/OpenHands/OpenHands) | 2026-02-28 | ⭐⭐⭐ | 📝 |
+| **Flowise** | 49,000+ | 可视化 Agent | [GitHub](https://github.com/FlowiseAI/Flowise) | 2026-02-28 | ⭐⭐⭐ | 📝 |
 | **deer-flow** | 21,180 | Agent | [GitHub](https://github.com/bytedance/deer-flow) | 2026-02-24 | ⭐⭐⭐ | 📝 |
 | **claude-flow** | 15,011 | Agent 编排 | [GitHub](https://github.com/ruvnet/claude-flow) | 2026-02-24 | ⭐⭐⭐ | 📝 |
 | **planning-with-files** | 14,326 | Agent/知识管理 | [GitHub](https://github.com/OthmanAdi/planning-with-files) | 2026-03-01 | ⭐⭐⭐ | 📝 |
@@ -84,7 +89,7 @@
 
 | 指标 | 数值 |
 |------|------|
-| **待研究** | 14 个 |
+| **待研究** | 19 个 |
 | **研究中** | 0 个 |
 | **已完成** | 12 个 (4 GitHub 项目 + 8 理论) |
 | **已暂停** | 0 个 |
@@ -125,6 +130,7 @@
 
 | 日期 | 更新内容 | 操作 |
 |------|---------|------|
+| 2026-03-01 | 添加 2 月 28 日推送项目 | 新增 AutoGPT、prompts.chat、LLMs-from-scratch、OpenHands、Flowise |
 | 2026-03-01 | OpenClaw 完整研究完成 | 4 篇报告（概览/会话管理/上下文注入/对比优化） |
 | 2026-03-01 | 添加 OpenClaw 上下文管理分析 | 深入研究 OpenClaw 压缩/会话存储/上下文构建 |
 | 2026-03-01 | 添加稀疏注意力深度解析 | 详解 Fixed/Learnable/StreamingLLM 等技术 |
