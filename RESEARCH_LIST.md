@@ -22,19 +22,21 @@
 
 ## 📝 待研究项目
 
-### RAG 框架专项（核心）
+### RAG 框架专项（核心）- 按 Stars 排序
 
-| 项目 | Stars | 类型 | GitHub 地址 | 推荐日期 | 优先级 | 状态 |
-|------|-------|------|-----------|---------|-------|------|
-| **LlamaIndex** | 35,000+ | RAG 框架 | [GitHub](https://github.com/run-llama/llama_index) | 2026-03-01 | ⭐⭐⭐⭐⭐ | 📝 |
-| **Haystack** | 15,000+ | RAG 框架 | [GitHub](https://github.com/deepset-ai/haystack) | 2026-03-01 | ⭐⭐⭐⭐⭐ | 📝 |
-| **RAGFlow** | 12,000+ | RAG 引擎 | [GitHub](https://github.com/infiniflow/ragflow) | 2026-03-01 | ⭐⭐⭐⭐ | 📝 |
-| **LightRAG** | 8,000+ | 轻量 RAG | [GitHub](https://github.com/HKUDS/LightRAG) | 2026-03-01 | ⭐⭐⭐⭐ | 📝 |
-| **txtai** | 10,000+ | 语义搜索/RAG | [GitHub](https://github.com/neuml/txtai) | 2026-03-01 | ⭐⭐⭐⭐ | 📝 |
-| **PrivateGPT** | 40,000+ | RAG 应用 | [GitHub](https://github.com/imartinez/privateGPT) | 2026-03-01 | ⭐⭐⭐ | 📝 |
-| **Dify** | 50,000+ | RAG 应用平台 | [GitHub](https://github.com/langgenius/dify) | 2026-03-01 | ⭐⭐⭐ | 📝 |
-| **AnythingLLM** | 35,000+ | RAG 桌面应用 | [GitHub](https://github.com/Mintplex-Labs/anything-llm) | 2026-03-01 | ⭐⭐⭐ | 📝 |
-| **ChatDOC** | 15,000+ | 文档 RAG | [GitHub](https://github.com/ChatDOC/ChatDOC) | 2026-03-01 | ⭐⭐ | 📝 |
+**研究顺序**: Stars 从高到低，逐个深度研究
+
+| # | 项目 | Stars | 类型 | GitHub 地址 | 优先级 | 状态 | 预计开始 |
+|---|------|-------|------|-----------|-------|------|---------|
+| 1 | **Dify** | 50,000+ | RAG 应用平台 | [GitHub](https://github.com/langgenius/dify) | ⭐⭐⭐⭐⭐ | 📝 | 待开始 |
+| 2 | **PrivateGPT** | 40,000+ | RAG 应用 | [GitHub](https://github.com/imartinez/privateGPT) | ⭐⭐⭐⭐⭐ | 📝 | 待开始 |
+| 3 | **LlamaIndex** | 35,000+ | RAG 框架 | [GitHub](https://github.com/run-llama/llama_index) | ⭐⭐⭐⭐⭐ | 📝 | 待开始 |
+| 4 | **AnythingLLM** | 35,000+ | RAG 桌面应用 | [GitHub](https://github.com/Mintplex-Labs/anything-llm) | ⭐⭐⭐⭐ | 📝 | 待开始 |
+| 5 | **Haystack** | 15,000+ | RAG 框架 | [GitHub](https://github.com/deepset-ai/haystack) | ⭐⭐⭐⭐⭐ | 📝 | 待开始 |
+| 6 | **ChatDOC** | 15,000+ | 文档 RAG | [GitHub](https://github.com/ChatDOC/ChatDOC) | ⭐⭐⭐ | 📝 | 待开始 |
+| 7 | **RAGFlow** | 12,000+ | RAG 引擎 | [GitHub](https://github.com/infiniflow/ragflow) | ⭐⭐⭐⭐ | 📝 | 待开始 |
+| 8 | **txtai** | 10,000+ | 语义搜索/RAG | [GitHub](https://github.com/neuml/txtai) | ⭐⭐⭐⭐ | 📝 | 待开始 |
+| 9 | **LightRAG** | 8,000+ | 轻量 RAG | [GitHub](https://github.com/HKUDS/LightRAG) | ⭐⭐⭐⭐ | 📝 | 待开始 |
 
 ### 其他待研究项目
 
@@ -146,6 +148,7 @@
 
 | 日期 | 更新内容 | 操作 |
 |------|---------|------|
+| 2026-03-01 | 启动 Dify 深度研究 | RAG 框架研究 #1（Stars 最高 50K） |
 | 2026-03-01 | 添加 RAG 框架许可协议对比 | MIT vs Apache 2.0 详细分析 |
 | 2026-03-01 | 添加 RAG 框架专项 | 新增 LlamaIndex、Haystack、LightRAG、txtai（用户指定） |
 | 2026-03-01 | 添加 RAG 专项项目 | 新增 PrivateGPT、Dify、AnythingLLM、ChatDOC、RAGFlow |
