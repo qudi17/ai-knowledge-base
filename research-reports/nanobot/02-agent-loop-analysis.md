@@ -23,9 +23,8 @@
 
 ### 初始化流程
 
-**核心代码**:
+**核心代码**: [`agent/loop.py`](https://github.com/HKUDS/nanobot/blob/main/nanobot/agent/loop.py#L50-L100)
 ```python
-# agent/loop.py:50-100
 class AgentLoop:
     def __init__(
         self,
@@ -80,11 +79,10 @@ class AgentLoop:
 
 ### 消息处理流程
 
-**核心方法**: `_process_message()`
+**核心方法**: `_process_message()` ([`agent/loop.py`](https://github.com/HKUDS/nanobot/blob/main/nanobot/agent/loop.py#L200-L350))
 
 **完整流程**:
 ```python
-# agent/loop.py:200-350
 async def _process_message(self, event: InboundMessage) -> None:
     """处理单条消息"""
     session_key = self._get_session_key(event)
@@ -144,10 +142,9 @@ async def _process_message(self, event: InboundMessage) -> None:
 
 ### 上下文构建机制
 
-**ContextBuilder** 负责构建 LLM 上下文：
+**ContextBuilder** 负责构建 LLM 上下文：[`agent/context.py`](https://github.com/HKUDS/nanobot/blob/main/nanobot/agent/context.py#L50-L150)
 
 ```python
-# agent/context.py:50-150
 class ContextBuilder:
     async def build(
         self,
@@ -204,10 +201,9 @@ class ContextBuilder:
 
 ### 记忆系统
 
-**MemoryStore** 实现轻量级记忆：
+**MemoryStore** 实现轻量级记忆：[`agent/memory.py`](https://github.com/HKUDS/nanobot/blob/main/nanobot/agent/memory.py#L20-L100)
 
 ```python
-# agent/memory.py:20-100
 class MemoryStore:
     def __init__(self, workspace: Path):
         self.workspace = workspace

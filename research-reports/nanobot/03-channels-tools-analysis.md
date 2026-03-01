@@ -30,9 +30,8 @@
 
 ### Channel 抽象基类
 
-**统一接口**:
+**统一接口**: [`channels/base.py`](https://github.com/HKUDS/nanobot/blob/main/nanobot/channels/base.py)
 ```python
-# channels/base.py
 class Channel(ABC):
     @abstractmethod
     async def start(self) -> None:
@@ -69,9 +68,8 @@ class Channel(ABC):
 
 ### FeishuChannel 示例
 
-**实现**:
+**实现**: [`channels/feishu/channel.py`](https://github.com/HKUDS/nanobot/blob/main/nanobot/channels/feishu/channel.py)
 ```python
-# channels/feishu/channel.py
 class FeishuChannel(Channel):
     def __init__(self, config: FeishuConfig, bus: MessageBus):
         self.config = config
@@ -152,9 +150,8 @@ class FeishuChannel(Channel):
 
 ### Tool 抽象基类
 
-**统一接口**:
+**统一接口**: [`agent/tools/base.py`](https://github.com/HKUDS/nanobot/blob/main/nanobot/agent/tools/base.py)
 ```python
-# agent/tools/base.py
 class Tool(ABC):
     name: str
     description: str
@@ -180,9 +177,8 @@ class Tool(ABC):
 
 ### ExecTool 示例（Shell 命令执行）
 
-**实现**:
+**实现**: [`agent/tools/shell.py`](https://github.com/HKUDS/nanobot/blob/main/nanobot/agent/tools/shell.py)
 ```python
-# agent/tools/shell.py
 class ExecTool(Tool):
     name = "exec"
     description = "Execute a shell command"
@@ -268,9 +264,8 @@ Skills/
 
 ### Skill 基类
 
-**实现**:
+**实现**: [`skills/base.py`](https://github.com/HKUDS/nanobot/blob/main/nanobot/skills/base.py)
 ```python
-# skills/base.py
 class Skill(ABC):
     name: str
     description: str

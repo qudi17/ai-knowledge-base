@@ -131,7 +131,7 @@ nanobot agent -m "Hello" --workspace ./my-project
 
 **核心代码**:
 ```python
-# __main__.py
+# [__main__.py](https://github.com/HKUDS/nanobot/blob/main/nanobot/__main__.py)
 from nanobot.cli.commands import app
 
 if __name__ == "__main__":
@@ -139,7 +139,7 @@ if __name__ == "__main__":
 ```
 
 ```python
-# cli/commands.py
+# [cli/commands.py](https://github.com/HKUDS/nanobot/blob/main/nanobot/cli/commands.py#L50-L70)
 @app.command()
 def agent(
     message: str = typer.Option(..., "--msg", "-m"),
@@ -221,9 +221,8 @@ sequenceDiagram
 
 ### 关键代码位置
 
-**1. AgentLoop 核心**:
+**1. AgentLoop 核心**: [`agent/loop.py`](https://github.com/HKUDS/nanobot/blob/main/nanobot/agent/loop.py#L200-L280)
 ```python
-# agent/loop.py:100-200
 async def _process_message(self, event: InboundMessage) -> None:
     """处理单条消息"""
     session_key = self._get_session_key(event)
@@ -261,9 +260,8 @@ async def _process_message(self, event: InboundMessage) -> None:
     )
 ```
 
-**2. Channel 注册**:
+**2. Channel 注册**: [`channels/__init__.py`](https://github.com/HKUDS/nanobot/blob/main/nanobot/channels/__init__.py)
 ```python
-# channels/__init__.py
 from .feishu.channel import FeishuChannel
 from .slack.channel import SlackChannel
 from .discord.channel import DiscordChannel
@@ -277,9 +275,8 @@ ALL_CHANNELS = {
 }
 ```
 
-**3. Tool 注册**:
+**3. Tool 注册**: [`agent/loop.py`](https://github.com/HKUDS/nanobot/blob/main/nanobot/agent/loop.py#L110-L135)
 ```python
-# agent/loop.py:110-130
 def _register_default_tools(self) -> None:
     """注册默认工具"""
     allowed_dir = self.workspace if self.restrict_to_workspace else None
