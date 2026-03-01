@@ -33,7 +33,7 @@
 
 ### 核心文件
 
-**Cron 服务**: [`api/app/core/cron/service.py`](https://github.com/qudi17/MemoryBear/blob/main/api/app/core/cron/service.py)
+**Cron 配置**: [`api/app/celery_app.py`](https://github.com/qudi17/MemoryBear/blob/main/api/app/celery_app.py)
 
 **功能**:
 - ✅ 定时触发记忆生成
