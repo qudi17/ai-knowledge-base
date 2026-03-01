@@ -148,7 +148,8 @@
 
 | 日期 | 更新内容 | 操作 |
 |------|---------|------|
-| 2026-03-01 | 启动 Dify 深度研究 | RAG 框架研究 #1（Stars 最高 50K） |
+| 2026-03-01 | 启动 LlamaIndex 深度研究 | RAG 框架研究 #3（35K⭐，RAG 领导者） |
+| 2026-03-01 | 完成 Dify 深度研究 | 4 篇研究报告（概览/RAG 引擎/工作流/对比） |
 | 2026-03-01 | 添加 RAG 框架许可协议对比 | MIT vs Apache 2.0 详细分析 |
 | 2026-03-01 | 添加 RAG 框架专项 | 新增 LlamaIndex、Haystack、LightRAG、txtai（用户指定） |
 | 2026-03-01 | 添加 RAG 专项项目 | 新增 PrivateGPT、Dify、AnythingLLM、ChatDOC、RAGFlow |
