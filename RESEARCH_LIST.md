@@ -51,11 +51,19 @@
 
 ## ✅ 已完成研究
 
+### GitHub 项目研究
+
 | 项目 | Stars | 类型 | GitHub 地址 | 完成日期 | 报告位置 |
 |------|-------|------|-----------|---------|---------|
 | **MarkItDown** | - | 文档转换 | [GitHub](https://github.com/microsoft/markitdown) | 2026-02-28 | [GitHub/markitdown/](./GitHub/markitdown/) |
 | **nanobot** | 23,839 | Agent 框架 | [GitHub](https://github.com/HKUDS/nanobot) | 2026-03-01 | [GitHub/nanobot/](./GitHub/nanobot/) |
 | **MemoryBear** | - | 记忆平台 | [GitHub](https://github.com/qudi17/MemoryBear) | 2026-03-01 | [GitHub/MemoryBear/](./GitHub/MemoryBear/) |
+
+### 理论研究
+
+| 主题 | 类型 | 完成日期 | 报告位置 |
+|------|------|---------|---------|
+| **RAG 管理历史上下文** | 元 RAG 理论 | 2026-03-01 | [research-reports/](./research-reports/rag-for-history-management.md) |
 
 ---
 
@@ -73,9 +81,9 @@
 |------|------|
 | **待研究** | 14 个 |
 | **研究中** | 0 个 |
-| **已完成** | 3 个 |
+| **已完成** | 4 个 (3 GitHub 项目 + 1 理论) |
 | **已暂停** | 0 个 |
-| **总计** | 17 个 |
+| **总计** | 18 个 |
 
 **优先级分布**:
 - ⭐⭐⭐ 高优先级：6 个
@@ -112,6 +120,7 @@
 
 | 日期 | 更新内容 | 操作 |
 |------|---------|------|
+| 2026-03-01 | 添加理论研究记录 | 新增 RAG 管理历史上下文理论研究 |
 | 2026-03-01 | 添加 GitHub 地址列 | 所有项目添加可点击的 GitHub 链接 |
 | 2026-03-01 | 简化待研究项目表格 | 合并为统一表格，按 Stars 排序 |
 | 2026-03-01 | 添加历史推送项目（去重） | 新增 deer-flow, superpowers, claude-flow 等 6 个项目 |
