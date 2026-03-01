@@ -146,6 +146,7 @@
 
 | 日期 | 更新内容 | 操作 |
 |------|---------|------|
+| 2026-03-01 | 添加 RAG 框架许可协议对比 | MIT vs Apache 2.0 详细分析 |
 | 2026-03-01 | 添加 RAG 框架专项 | 新增 LlamaIndex、Haystack、LightRAG、txtai（用户指定） |
 | 2026-03-01 | 添加 RAG 专项项目 | 新增 PrivateGPT、Dify、AnythingLLM、ChatDOC、RAGFlow |
 | 2026-03-01 | 添加 2 月 28 日推送项目 | 新增 AutoGPT、prompts.chat、LLMs-from-scratch、OpenHands、Flowise |
