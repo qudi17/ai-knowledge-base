@@ -1,458 +1,474 @@
-# GitHub 项目研究方法论 - 毛线团研究法
+# 毛线团研究法 v2.0 - 系统性 GitHub 项目研究方法
 
-**创建日期**：2026-02-28  
-**提出者**：Eddy  
-**应用场景**：GitHub 项目深度研究
+**版本**: v2.0  
+**创建日期**: 2026-02-28  
+**更新日期**: 2026-03-01  
+**提出者**: Eddy  
+**改进者**: Jarvis（基于 MemoryBear 研究遗漏反思）
 
 ---
 
-## 🧶 核心比喻
+## 🎯 核心理念
 
 > 把 GitHub 项目当作一个**毛线团**：
-> - **毛线头** = 入口（API/CLI/Shell 脚本）
+> - **毛线头** = 入口点（API/CLI/Cron/上传/事件/Webhook/队列）
 > - **毛线** = 调用链
 > - **毛线团** = 完整项目结构
 
-**研究原则**：
-1. 找到线头（入口点）
-2. 顺着线走（调用顺序）
-3. 不跳跃（不随机阅读文件）
-4. 记录路径（绘制流程图）
+**核心原则**:
+1. ✅ **入口点普查** - 系统性扫描所有入口点，不依赖直觉
+2. ✅ **多入口点交叉验证** - 从 3+ 个入口点独立追踪并对比
+3. ✅ **知识链路完整性** - 追踪知识完整生命周期
+4. ✅ **架构层次覆盖** - 覆盖所有架构层次
+5. ✅ **完整性评分** - ≥80% 才能发布研究
 
 ---
 
-## 📋 研究流程
+## 📋 研究流程（6 个阶段）
 
-### 阶段 1：找线头（入口点识别）
+### 阶段 0: 入口点普查（新增）⭐ **mandatory**
 
-**目标**：找到项目的入口点
+**目标**: 系统性扫描所有入口点类型
 
-**入口类型**：
-| 类型 | 位置 | 示例 |
-|------|------|------|
-| **API 入口** | `app/controllers/`, `app/routes/` | `POST /v1/app/chat` |
-| **CLI 入口** | `bin/`, `scripts/`, `__main__.py` | `python -m package` |
-| **Shell 脚本** | `*.sh`, `Makefile`, `docker-compose.yml` | `./deploy.sh` |
-| **Web 入口** | `web/src/`, `frontend/` | `App.tsx`, `main.vue` |
+**执行步骤**:
 
-**查找命令**：
+#### 步骤 1: 运行入口点扫描命令
+
 ```bash
-# API 路由
-grep -r "@router.post\|@app.get\|APIRouter" app/
+# 1. API 入口
+grep -r "@app.post\|@router" app/controllers/
 
-# CLI 入口
-find . -name "__main__.py" -o -name "cli.py" -o -name "main.py"
+# 2. CLI 入口
+find . -name "__main__.py" -o -name "cli.py"
 
-# Shell 脚本
-find . -name "*.sh" -o -name "Makefile"
+# 3. Cron 定时任务入口
+grep -r "beat_schedule\|crontab" .
 
-# 入口配置
-cat docker-compose.yml
-cat package.json | jq ".main"
+# 4. Celery 后台任务入口
+grep -r "@celery_app.task" .
+
+# 5. 文档上传入口
+grep -r "UploadController\|upload" .
+
+# 6. 事件触发器入口
+find . -type d -name "events" -o -name "signals"
+
+# 7. Webhook 入口
+find . -type d -name "webhooks"
+
+# 8. 消息队列入口
+find . -type d -name "queues" -o -name "bus"
 ```
 
-**MemoryBear 示例**：
-```
-入口：POST /v1/app/chat
-位置：app/controllers/service/app_api_controller.py
-函数：chat()
-```
+#### 步骤 2: 填写入口点普查表
+
+| 入口点类型 | 发现数量 | 代码位置 | 是否分析 |
+|-----------|---------|---------|---------|
+| **API** | 10 | `controllers/` | ⬜ |
+| **CLI** | 2 | `__main__.py`, `cli/` | ⬜ |
+| **Cron** | 4 | `celery_app.py` | ⬜ |
+| **Celery** | 5 | `tasks.py` | ⬜ |
+| **上传** | 5 | `upload_controller.py` | ⬜ |
+| **事件** | 0 | - | ⬜ |
+| **Webhook** | 0 | - | ⬜ |
+| **队列** | 2 | `bus/` | ⬜ |
+
+#### 步骤 3: 选择 3+ 个入口点进行追踪
+
+**选择标准**:
+- ✅ 主入口点（如 API）
+- ✅ 后台入口点（如 Cron/Celery）
+- ✅ 数据入口点（如上传接口）
+- ✅ 其他重要入口点
+
+**产出**: 入口点普查表（已填写）
+
+**验证标准**:
+- ✅ 所有 8 种入口点类型必须扫描
+- ✅ 每个发现的入口点必须有记录
+- ✅ 至少选择 3 个入口点进行追踪
 
 ---
 
-### 阶段 2：顺线走（调用链追踪）
+### 阶段 1: 多入口点交叉验证（改进）⭐ **mandatory**
 
-**目标**：按调用顺序追踪代码执行路径
+**目标**: 从 3+ 个入口点独立追踪并对比结果
 
-**追踪方法**：
+**执行步骤**:
 
-#### 方法 1：函数调用搜索
+#### 步骤 1: 独立追踪每个入口点
+
+```
+入口点 A（API）→ 调用链 A → 系统侧面 A
+    ↓
+入口点 B（Cron）→ 调用链 B → 系统侧面 B
+    ↓
+入口点 C（上传）→ 调用链 C → 系统侧面 C
+```
+
+#### 步骤 2: 对比分析结果
+
+**对比问题**:
+- 哪些模块被多个入口点共享？
+- 哪些模块只被特定入口点使用？
+- 是否有入口点揭示了独特的系统侧面？
+
+#### 步骤 3: 整合为完整系统理解
+
+```
+系统侧面 A + 系统侧面 B + 系统侧面 C = 完整系统理解
+```
+
+**产出**: 多入口点对比分析文档
+
+**验证标准**:
+- ✅ 至少 3 个入口点独立追踪
+- ✅ 每个入口点有完整调用链
+- ✅ 有对比分析文档
+
+---
+
+### 阶段 2: 知识链路完整性检查（新增）⭐ **mandatory**
+
+**目标**: 追踪知识的完整生命周期
+
+**执行步骤**:
+
+#### 步骤 1: 定义知识链路
+
+```
+知识产生 → 知识存储 → 知识检索 → 知识使用 → 知识优化
+```
+
+#### 步骤 2: 追踪每个环节
+
+| 环节 | 检查问题 | 检查位置 |
+|------|---------|---------|
+| **知识产生** | 文档上传？API 创建？外部导入？ | `upload_controller.py`, `controllers/` |
+| **知识存储** | 什么数据库？什么格式？ | `repositories/`, `models/` |
+| **知识检索** | 什么检索策略？什么排序算法？ | `search/`, `rag/` |
+| **知识使用** | 谁在使用？如何使用？ | `agent/`, `services/` |
+| **知识优化** | 遗忘机制？反思机制？巩固机制？ | `forgetting_engine/`, `reflection_engine/` |
+
+#### 步骤 3: 识别遗漏环节
+
+**问题**:
+- 哪个环节没有分析？
+- 哪个环节分析不深入？
+
+#### 步骤 4: 补充研究
+
+**产出**: 知识链路分析文档
+
+**验证标准**:
+- ✅ 知识链路 5 个环节必须全部覆盖
+- ✅ 每个环节有详细分析文档
+- ✅ 识别并补充遗漏环节
+
+---
+
+### 阶段 3: 架构层次覆盖检查（新增）⭐ **mandatory**
+
+**目标**: 覆盖所有架构层次
+
+**执行步骤**:
+
+#### 步骤 1: 定义架构层次
+
+```
+表现层 → 服务层 → 核心层 → 后台层 → 数据层
+```
+
+#### 步骤 2: 检查每个层次
+
+| 层次 | 检查内容 | 检查位置 |
+|------|---------|---------|
+| **表现层** | API/CLI/上传接口/Webhook | `controllers/`, `cli/` |
+| **服务层** | 业务逻辑编排 | `services/` |
+| **核心层** | 核心引擎、算法 | `core/` |
+| **后台层** | Cron/Celery/异步任务 | `cron/`, `tasks.py` |
+| **数据层** | 数据库/缓存/向量库 | `repositories/`, `models/` |
+
+#### 步骤 3: 识别遗漏层次
+
+**问题**:
+- 哪个层次没有分析？
+- 哪个层次分析不深入？
+
+#### 步骤 4: 补充研究
+
+**产出**: 架构层次分析文档
+
+**验证标准**:
+- ✅ 5 个架构层次必须全部覆盖
+- ✅ 每个层次有分析文档
+- ✅ 识别并补充遗漏层次
+
+---
+
+### 阶段 4: 传统毛线团分析（保留）
+
+**目标**: 深度分析核心模块
+
+**执行步骤**:
+
+#### 步骤 1: 找线头（入口点识别）
+
+已从阶段 0 完成
+
+#### 步骤 2: 顺线走（调用链追踪）
 
 ```bash
-# 搜索函数调用
+# 示例：追踪 API 调用链
 grep -r "def chat(" app/
 grep -r "await chat(" app/
 grep -r "\.chat(" app/
-
-# 搜索类方法调用
-grep -r "LangChainAgent(" app/
-grep -r "AppChatService(" app/
 ```
 
-#### 方法 2：导入关系分析
+#### 步骤 3: 记路径（流程图绘制）
 
-```bash
-# 查看导入
-grep -r "from app.services import" app/
-grep -r "import.*Service" app/
-
-# 生成导入图
-pyan3 *.py --uses --dot > imports.dot
-```
-
-#### 方法 3：日志追踪（如果有）
-
-```bash
-# 搜索日志输出
-grep -r "logger.info" app/ | grep "chat"
-grep -r "log.*request" app/
-```
-
-**MemoryBear 示例**：
-```
-1. API Controller: chat()
-   ↓ (grep -r "app_chat_service")
-2. AppChatService: agnet_chat()
-   ↓ (grep -r "LangChainAgent")
-3. LangChainAgent: chat()
-   ↓ (grep -r "agent.ainvoke")
-4. LangChain Agent: ainvoke()
-   ↓ (grep -r "write_long_term")
-5. Memory Write: write_long_term()
-```
-
----
-
-### 阶段 3：记路径（流程图绘制）
-
-**目标**：可视化调用链
-
-**工具**：
-- Mermaid（Markdown 原生支持）
-- Draw.io（复杂流程图）
-- Excalidraw（手绘风格）
-
-**Mermaid 示例**：
 ```mermaid
 sequenceDiagram
     participant API as API Controller
-    participant Service as AppChatService
-    participant Agent as LangChainAgent
-    participant LLM as LLM
-    participant Memory as Memory Write
+    participant Service as Service
+    participant Core as Core Engine
+    participant DB as Database
     
-    API->>Service: agnet_chat()
-    Service->>Agent: chat()
-    Agent->>LLM: ainvoke()
-    LLM-->>Agent: response
-    Agent->>Memory: write_long_term()
-    Memory-->>Service: result
+    API->>Service: chat()
+    Service->>Core: process()
+    Core->>DB: query()
+    DB-->>Core: result
+    Core-->>Service: response
     Service-->>API: response
-    API-->>User: response
 ```
 
-**记录内容**：
-- 每个节点的函数名
-- 参数传递
-- 返回值
-- 关键代码行号
-- 使用的 prompt（如果有）
+#### 步骤 4: 理结构（模块关系图）
+
+```bash
+# 生成目录树
+tree -L 3 -I '__pycache__|node_modules|.git'
+```
+
+**产出**: 核心模块分析文档
 
 ---
 
-### 阶段 4：理结构（模块关系图）
+### 阶段 5: 完整性评分（新增）⭐ **mandatory**
 
-**目标**：理解项目整体架构
+**目标**: 验证研究完整性
 
-**方法**：
-1. **目录树分析**
-   ```bash
-   tree -L 3 -I '__pycache__|node_modules|.git'
-   ```
+**执行步骤**:
 
-2. **模块依赖图**
-   ```bash
-   pyan3 *.py --uses --dot > modules.dot
-   ```
+#### 步骤 1: 填写 COMPLETENESS_CHECKLIST.md
 
-3. **数据流分析**
-   - 数据库表关系
-   - 缓存使用位置
-   - 外部服务调用
+```bash
+# 复制检查清单
+cp templates/research-project/COMPLETENESS_CHECKLIST.md \
+   .planning/{项目名}/COMPLETENESS_CHECKLIST.md
 
-**MemoryBear 示例**：
-```
-app/
-├── controllers/        # API 入口（线头）
-│   └── service/
-│       └── app_api_controller.py
-├── services/           # 业务逻辑（主线）
-│   └── app_chat_service.py
-├── core/               # 核心引擎（关键模块）
-│   ├── agent/
-│   │   └── langchain_agent.py
-│   ├── memory/
-│   │   └── agent/langgraph_graph/
-│   └── tools/
-├── models/             # 数据模型
-└── repositories/       # 数据访问
+# 逐项检查并填写
 ```
 
----
+#### 步骤 2: 计算完整性评分
 
-## 🎯 应用案例
+| 完成度 | 评分 | 说明 |
+|-------|------|------|
+| **100%** | ⭐⭐⭐⭐⭐ | 所有检查项完成 |
+| **80-99%** | ⭐⭐⭐⭐ | 重要项完成，次要项遗漏 |
+| **60-79%** | ⭐⭐⭐ | 核心项完成，部分遗漏 |
+| **<60%** | ⭐⭐ | 重大遗漏 |
 
-### 案例 1：MemoryBear 记忆写入流程
+#### 步骤 3: 验证合格标准
 
-**线头**：`POST /v1/app/chat`
+**合格标准**: ≥80%
 
-**顺线追踪**：
-```
-1. app_api_controller.py:chat()
-   - 第 119 行：@router.post("/chat")
-   - 第 158 行：app_chat_service.agnet_chat()
+**不合格处理**:
+- 识别遗漏项
+- 补充研究
+- 重新评分
 
-2. app_chat_service.py:agnet_chat()
-   - 第 39 行：函数定义
-   - 第 172 行：LangChainAgent(...)
-   - 第 201 行：agent.chat()
+#### 步骤 4: 记录评分结果
 
-3. langchain_agent.py:chat()
-   - 第 194 行：函数定义
-   - 第 267 行：agent.ainvoke()
-   - 第 280 行：write_long_term()
+**位置**: `STATE.md`
 
-4. write_graph.py:write_long_term()
-   - 第 68 行：函数定义
-   - 第 73 行：if storage_type == 'rag'
-   - 第 78 行：long_term_storage()
-
-5. write_router.py:long_term_storage()
-   - 第 134 行：window_dialogue()
-   - 第 159 行：memory_long_term_storage()
-   - 第 176 行：aggregate_judgment()
-
-6. write_router.py:aggregate_judgment()
-   - 第 198 行：template_service.render_template()
-   - 第 203 行：write_aggregate_judgment.jinja2
-```
-
-**绘制流程图**：
-```mermaid
-graph TB
-    API[POST /v1/app/chat] --> Controller[app_api_controller.py:chat]
-    Controller --> Service[app_chat_service.py:agnet_chat]
-    Service --> Agent[langchain_agent.py:chat]
-    Agent --> LLM[LangChain ainvoke]
-    LLM --> Memory{storage_type?}
-    Memory -->|rag| RAG[write_rag]
-    Memory -->|neo4j| Neo4j[long_term_storage]
-    Neo4j --> Strategy{strategy?}
-    Strategy -->|chunk| Window[window_dialogue]
-    Strategy -->|time| Time[memory_long_term_storage]
-    Strategy -->|aggregate| Aggregate[aggregate_judgment]
-    Aggregate --> Template[write_aggregate_judgment.jinja2]
-    Template --> LLM2[LLM judgment]
-    LLM2 --> Write[Write to Neo4j]
-```
-
-**记录 Prompt 使用**：
-- `write_aggregate_judgment.jinja2` - 记忆去重判断
-- `summary_prompt.jinja2` - 记忆检索总结
-
----
-
-### 案例 2：nanobot Agent 循环
-
-**线头**：`MessageBus.inbound`
-
-**顺线追踪**：
-```
-1. agent/loop.py:run()
-   - 第 247 行：while self._running
-   - 第 251 行：await self.bus.consume_inbound()
-   - 第 263 行：asyncio.create_task(self._dispatch())
-
-2. agent/loop.py:_dispatch()
-   - 第 284 行：async with self._processing_lock
-   - 第 287 行：await self._process_message()
-
-3. agent/loop.py:_process_message()
-   - 第 304 行：函数定义
-   - 第 397 行：build_messages()
-   - 第 419 行：_run_agent_loop()
-
-4. agent/loop.py:_run_agent_loop()
-   - 第 191 行：while iteration < max_iterations
-   - 第 196 行：await provider.chat()
-   - 第 204 行：if response.has_tool_calls
-   - 第 226 行：await tools.execute()
-```
-
-**绘制流程图**：
-```mermaid
-graph TB
-    Start[MessageBus.inbound] --> Run[AgentLoop.run]
-    Run --> Dispatch[_dispatch]
-    Dispatch --> Process[_process_message]
-    Process --> Context[ContextBuilder.build_messages]
-    Context --> Loop[_run_agent_loop]
-    Loop --> LLM[provider.chat]
-    LLM --> Check{tool_calls?}
-    Check -->|yes| Tool[tools.execute]
-    Tool --> Loop
-    Check -->|no| Final[final_content]
-    Final --> Save[_save_turn]
-    Save --> Bus[MessageBus.outbound]
-```
-
----
-
-## 📊 研究产出模板
-
-### 文档结构
-
+**内容**:
 ```markdown
-# [项目名] - [研究主题]
+## 研究完整性评分
 
-## 🧶 入口点（线头）
+**总分**: 95% ⭐⭐⭐⭐⭐
 
-- **类型**：API/CLI/Shell
-- **位置**：`path/to/file.py`
-- **函数**：`function_name()`
-- **代码行**：第 X 行
+**扣分项**:
+- 事件触发器：无此功能（-5%）
 
-## 📋 调用链（顺线）
-
-```
-1. file1.py:function1()
-   ↓ (grep -r "function2")
-2. file2.py:function2()
-   ↓ (grep -r "function3")
-3. file3.py:function3()
+**结论**: 研究完整，可以发布
 ```
 
-## 📊 流程图（路径）
+**产出**: COMPLETENESS_CHECKLIST.md（已填写）
 
-```mermaid
-graph TB
-    ...
+**验证标准**:
+- ✅ 必须使用 COMPLETENESS_CHECKLIST.md
+- ✅ 评分必须≥80% 才能发布
+- ✅ 评分结果必须记录在 STATE.md
+
+---
+
+## 📊 验证机制
+
+### 自我验证问题
+
+**研究开始前**:
+- [ ] 是否完成了入口点普查？
+- [ ] 是否识别了所有入口点类型？
+- [ ] 是否选择了 3+ 个入口点进行追踪？
+
+**研究过程中**:
+- [ ] 是否追踪了知识完整链路？
+- [ ] 是否覆盖了所有架构层次？
+- [ ] 是否进行了多入口点交叉验证？
+
+**研究完成后**:
+- [ ] 是否填写了 COMPLETENESS_CHECKLIST.md？
+- [ ] 完整性评分是否≥80%？
+- [ ] 是否记录了评分结果？
+
+---
+
+### 同行评审检查
+
+**评审问题**:
+1. 入口点普查是否完整？
+2. 多入口点交叉验证是否执行？
+3. 知识链路是否完整？
+4. 架构层次是否全覆盖？
+5. 完整性评分是否≥80%？
+
+**评审标准**:
+- ✅ 所有问题必须回答"是"
+- ✅ 任何"否"必须补充研究
+- ✅ 评审通过后才能发布
+
+---
+
+## 🎯 应用示例：MemoryBear 重研究
+
+### 阶段 0: 入口点普查
+
+**执行**:
+```bash
+# 扫描所有入口点
+grep -r "@app.post" app/controllers/          # → 发现 10 个 API
+grep -r "beat_schedule" .                      # → 发现 4 个 Cron 任务
+grep -r "UploadController" .                   # → 发现 5 个上传接口
+grep -r "@celery_app.task" .                   # → 发现 5 个 Celery 任务
 ```
 
-## 📁 模块关系
+**结果**:
+| 入口点类型 | 发现数量 | 代码位置 | 是否分析 |
+|-----------|---------|---------|---------|
+| API | 10 | `controllers/` | ✅ |
+| Cron | 4 | `celery_app.py` | ✅ |
+| 上传 | 5 | `upload_controller.py` | ✅ |
+| Celery | 5 | `tasks.py` | ✅ |
 
+**选择**: API + Cron + 上传（3 个入口点）
+
+---
+
+### 阶段 1: 多入口点交叉验证
+
+**追踪结果**:
 ```
-project/
-├── module1/
-├── module2/
-└── module3/
+入口点 A（API）→ Agent 聊天流程
+入口点 B（Cron）→ 记忆生成/遗忘/反思流程 ← **新发现！**
+入口点 C（上传）→ 知识提取流程 ← **新发现！**
 ```
 
-## 🔑 关键发现
+**对比分析**:
+- **共享模块**: MemoryStore, Neo4j
+- **独特模块**:
+  - API 独占：Agent, Tools
+  - Cron 独占：ForgettingEngine, ReflectionEngine
+  - 上传独占：DeepDocParser, ExtractionEngine
 
-1. ...
-2. ...
+**结论**: 3 个入口点揭示 3 个不同系统侧面，必须全部分析
 
-## 📝 待研究分支
+---
 
-- [ ] 分支 1：...
-- [ ] 分支 2：...
+### 阶段 2: 知识链路完整性
+
+**追踪结果**:
+```
+✅ 知识产生：文档上传（DeepDocParser）
+✅ 知识存储：Neo4j + 向量数据库
+✅ 知识检索：混合搜索（关键词 + 语义）
+✅ 知识使用：Agent 调用
+✅ 知识优化：遗忘曲线 + 反思引擎
+```
+
+**结论**: 知识链路完整
+
+---
+
+### 阶段 3: 架构层次覆盖
+
+**检查结果**:
+```
+✅ 表现层：API + 上传接口
+✅ 服务层：Services
+✅ 核心层：Agent + Memory
+✅ 后台层：Cron + Celery
+✅ 数据层：Neo4j + 向量 + Redis
+```
+
+**结论**: 架构层次全覆盖
+
+---
+
+### 阶段 5: 完整性评分
+
+**评分结果**:
+```
+入口点检查：100% ✅
+架构层次检查：100% ✅
+知识链路检查：100% ✅
+Agent 系统检查：100% ✅
+工具系统检查：100% ✅
+...
+
+总分：95% ⭐⭐⭐⭐⭐
+
+结论：研究完整，可以发布
 ```
 
 ---
 
-## 🛠️ 工具清单
+## 📝 版本历史
 
-### 代码搜索
-
-| 工具 | 用途 | 命令示例 |
+| 版本 | 日期 | 改进内容 |
 |------|------|---------|
-| **grep** | 文本搜索 | `grep -r "def chat" app/` |
-| **ripgrep (rg)** | 快速 grep | `rg "function_name"` |
-| **astgrep** | AST 搜索 | `astgrep --pattern 'function()'` |
-
-### 依赖分析
-
-| 工具 | 用途 | 命令示例 |
-|------|------|---------|
-| **pyan3** | Python 依赖图 | `pyan3 *.py --uses --dot` |
-| **importlab** | 导入分析 | `importlab main.py` |
-| **pydeps** | 模块依赖 | `pydeps module --show-deps` |
-
-### 可视化
-
-| 工具 | 用途 | 输出格式 |
-|------|------|---------|
-| **Mermaid** | Markdown 流程图 | PNG/SVG |
-| **Graphviz** | 复杂关系图 | PNG/SVG/PDF |
-| **Excalidraw** | 手绘风格 | PNG/SVG |
-
-### 日志分析
-
-| 工具 | 用途 | 命令示例 |
-|------|------|---------|
-| **lnav** | 日志查看 | `lnav logs/*.log` |
-| **jq** | JSON 日志 | `cat log.jsonl \| jq '.'` |
+| **v1.0** | 2026-02-28 | 初始版本（4 阶段） |
+| **v2.0** | 2026-03-01 | 基于 MemoryBear 研究遗漏反思，新增：
+  - 阶段 0: 入口点普查
+  - 阶段 1: 多入口点交叉验证
+  - 阶段 2: 知识链路完整性检查
+  - 阶段 3: 架构层次覆盖检查
+  - 阶段 5: 完整性评分
+  - 强制验证机制 |
 
 ---
 
-## ✅ 检查清单
+## 🔗 相关资源
 
-### 研究前准备
+### 模板文件
+- [COMPLETENESS_CHECKLIST.md](./COMPLETENESS_CHECKLIST.md) - 研究完整性检查清单
+- [RESEARCH_REFLECTION_AND_IMPROVEMENT.md](./RESEARCH_REFLECTION_AND_IMPROVEMENT.md) - 研究反思与改进
 
-- [ ] 克隆项目到本地
-- [ ] 安装依赖
-- [ ] 运行项目（如果可能）
-- [ ] 准备搜索工具（grep/rg/pyan3）
-
-### 研究中执行
-
-- [ ] 找到入口点（线头）
-- [ ] 追踪调用链（顺线）
-- [ ] 绘制流程图（路径）
-- [ ] 记录关键代码位置
-- [ ] 记录使用的 prompt（如果有）
-
-### 研究后整理
-
-- [ ] 整理文档结构
-- [ ] 验证所有代码位置
-- [ ] 补充待研究分支
-- [ ] 提交到 GitHub
-- [ ] 同步到 Obsidian
+### 示例项目
+- [MemoryBear 研究](../research-reports/MemoryBear/) - 使用 v2.0 方法论重研究
+- [nanobot 研究](../research-reports/nanobot/) - 使用 v1.0 方法论研究
 
 ---
 
-## 📚 参考资源
-
-### 代码理解
-
-- [Reading Code Without Running It](https://jvns.ca/blog/2024/01/15/reading-code/)
-- [How to Read Code](https://github.com/remoteinterview/code-reading-guide)
-
-### 工具使用
-
-- [ripgrep 使用指南](https://github.com/BurntSushi/ripgrep)
-- [pyan3 文档](https://github.com/techtonik/pyan)
-- [Mermaid 语法](https://mermaid.js.org/)
-
----
-
-## 🎯 未来应用计划
-
-### MemoryBear 后续研究
-
-- [ ] 以 RAG 检索为入口，追踪检索流程
-- [ ] 以工具系统为入口，追踪工具执行
-- [ ] 以工作流引擎为入口，追踪工作流编排
-
-### 下一个项目：langchain
-
-- [ ] 找到入口：`langchain/chains/`
-- [ ] 追踪调用链：Chain → LLM → Output
-- [ ] 绘制流程图
-- [ ] 记录 Prompt 使用
-
-### 下一个项目：llama_index
-
-- [ ] 找到入口：`llama_index/core/`
-- [ ] 追踪调用链：QueryEngine → Retriever → Response
-- [ ] 绘制流程图
-- [ ] 记录索引策略
-
----
-
-**创建人**：Jarvis  
-**日期**：2026-02-28  
-**状态**：✅ 已完成  
-**应用项目**：MemoryBear, nanobot
+**版本**: v2.0  
+**最后更新**: 2026-03-01  
+**维护者**: Jarvis
