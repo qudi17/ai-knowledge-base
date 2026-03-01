@@ -76,11 +76,11 @@
 
 ### GitHub 项目研究
 
-| 项目 | Stars | 类型 | GitHub 地址 | 完成日期 | 报告位置 |
-|------|-------|------|-----------|---------|---------|
-| **MarkItDown** | - | 文档转换 | [GitHub](https://github.com/microsoft/markitdown) | 2026-02-28 | [GitHub/markitdown/](./GitHub/markitdown/) |
-| **nanobot** | 23,839 | Agent 框架 | [GitHub](https://github.com/HKUDS/nanobot) | 2026-03-01 | [GitHub/nanobot/](./GitHub/nanobot/) |
-| **MemoryBear** | - | 记忆平台 | [GitHub](https://github.com/qudi17/MemoryBear) | 2026-03-01 | [GitHub/MemoryBear/](./GitHub/MemoryBear/) |
+| 项目 | Stars | 类型 | GitHub 地址 | 完成日期 | 报告位置 | 完整性评分 |
+|------|-------|------|-----------|---------|---------|------------|
+| **MarkItDown** | Microsoft | 文档转换 | [GitHub](https://github.com/microsoft/markitdown) | 2026-03-02 | [.planning/markitdown-research/](../.planning/markitdown-research/) | 92% ⭐⭐⭐⭐⭐ |
+| **nanobot** | 23,839 | Agent 框架 | [GitHub](https://github.com/HKUDS/nanobot) | 2026-03-01 | [GitHub/nanobot/](./GitHub/nanobot/) | - |
+| **MemoryBear** | - | 记忆平台 | [GitHub](https://github.com/qudi17/MemoryBear) | 2026-03-02 | [GitHub/MemoryBear/](./GitHub/MemoryBear/) | - |
 
 ### 理论研究
 
@@ -148,6 +148,7 @@
 
 | 日期 | 更新内容 | 操作 |
 |------|---------|------|
+| 2026-03-02 | 完成 MemoryBear v2.1 深度研究 | 15 篇研究报告，完整性评分 94%，新增 ACT-R 遗忘引擎/反思引擎/Neo4j 存储/混合搜索深度分析 |
 | 2026-03-01 | 启动 LlamaIndex 深度研究 | RAG 框架研究 #3（35K⭐，RAG 领导者） |
 | 2026-03-01 | 完成 Dify 深度研究 | 4 篇研究报告（概览/RAG 引擎/工作流/对比） |
 | 2026-03-01 | 添加 RAG 框架许可协议对比 | MIT vs Apache 2.0 详细分析 |
