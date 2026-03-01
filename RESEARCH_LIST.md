@@ -65,6 +65,7 @@
 |------|------|---------|---------|
 | **RAG 管理历史上下文** | 元 RAG 理论 | 2026-03-01 | [research-reports/](./research-reports/rag-for-history-management.md) |
 | **OpenClaw 上下文管理对比** | 架构分析 | 2026-03-01 | [research-reports/](./research-reports/openclaw-context-vs-rag-theory.md) |
+| **6 种上下文管理方法对比** | 方法对比 | 2026-03-01 | [research-reports/](./research-reports/context-management-methods-comparison.md) |
 
 ---
 
@@ -82,7 +83,7 @@
 |------|------|
 | **待研究** | 14 个 |
 | **研究中** | 0 个 |
-| **已完成** | 5 个 (3 GitHub 项目 + 2 理论) |
+| **已完成** | 6 个 (3 GitHub 项目 + 3 理论) |
 | **已暂停** | 0 个 |
 | **总计** | 18 个 |
 
@@ -121,6 +122,7 @@
 
 | 日期 | 更新内容 | 操作 |
 |------|---------|------|
+| 2026-03-01 | 添加 6 种上下文管理方法对比 | 全面对比滑动窗口/RAG/摘要压缩/稀疏注意力/关键信息/分层管理 |
 | 2026-03-01 | 添加 OpenClaw 上下文管理对比 | 对比当前实现与 RAG 理论 |
 | 2026-03-01 | 添加理论研究记录 | 新增 RAG 管理历史上下文理论研究 |
 | 2026-03-01 | 添加 GitHub 地址列 | 所有项目添加可点击的 GitHub 链接 |
