@@ -189,6 +189,7 @@ await loop.run("Hello")
 
 ```mermaid
 sequenceDiagram
+    autonumber
     participant User as 用户
     participant Channel as Channel
     participant Bus as MessageBus
@@ -197,17 +198,21 @@ sequenceDiagram
     participant Tool as Tools
     
     User->>Channel: 发送消息
-    Channel->>Bus: publish_inbound()
+    Channel->>Bus: publish_inbound(event)
     Bus->>Loop: consume_inbound()
-    Loop->>Loop: _process_message()
-    Loop->>Loop: _build_context()
-    Loop->>LLM: 调用 LLM
-    LLM-->>Loop: 返回响应
-    Loop->>Loop: 解析工具调用
-    Loop->>Tool: 执行工具
-    Tool-->>Loop: 返回结果
-    Loop->>Loop: 迭代（最多 40 次）
-    Loop->>Bus: publish_outbound()
+    Loop->>Loop: 1. 获取/创建会话
+    Loop->>Loop: 2. 构建上下文
+    Loop->>LLM: 3. 调用 LLM
+    LLM-->>Loop: 返回响应 (content + tool_calls)
+    alt 有工具调用
+        Loop->>Loop: 4. 解析工具调用
+        Loop->>Tool: 5. 执行工具
+        Tool-->>Loop: 返回结果
+        Loop->>Loop: 6. 添加结果到上下文
+        Loop->>LLM: 7. 继续迭代 (最多 40 次)
+        LLM-->>Loop: 返回最终响应
+    end
+    Loop->>Bus: 8. publish_outbound(response)
     Bus->>Channel: 发送响应
     Channel->>User: 返回结果
 ```
